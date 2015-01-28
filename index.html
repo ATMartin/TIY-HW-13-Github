@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sneakhub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.1.2/octicons.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<header>
+		<div class='header-container'>
+			<div class='header-left'>
+				<input type="text" class="header-search">
+				<a href="#">Explore</a>
+				<a href="#">Gist</a>
+				<a href="#">Blog</a>
+				<a href="#">Help</a>
+			</div>
+			<div class='header-right'>
+				<a href="#">Profile</a>
+				<a href="#">+</a>
+				<a href="#">Notes</a>
+				<a href="#">Gear</a>
+				<a href="#">Door</a>
+			</div>
+		</div>
+	</header>
+  <div class="container">
+    <div class="sidebar">
+         </div>
+    <div class="content">
+      <div class="content-tabs">
+			  <a href="#">Contributions</a>
+				<a href="#">Repositories</a>
+				<a href="#">Public activity</a>
+				<button class="edit-profile">Edit Profile</button>
+			</div>
+			<div class="repo-search-sort">
+				<input type="text" class="search-repo-input">
+				<button class="search-repo">Search</button>
+				<a href="#" selected>All</a>
+				<a href="#">Public</a>
+        <a href="#">Private</a>
+				<a href="#">Sources</a>
+				<a href="#">Forks</a>
+				<a href="#">Mirrors</a>
+				<button class="new-repo">New</button>
+			</div>
+			<ul class="repo-big-list">
+				<!--
+				AUTO-POPULATE
+				-->
+			</ul>	
+			</div>
+    </div>
+    <footer>
+      
+    </footer>
+	
+	</div>
+	
+	<!-- TEMPLATES -->
+	<script type="text/template" data-template-name="sidebar-content">
+		 <div class="large-profile-pic">
+        <img src="http://placekitten.com/g/230/230">
+      </div>
+			<span class="sidebar-fullname"></span>
+			<span class="sidebar-username"></span>
+			<hr>
+			<span class="sidebar-location"></span>
+			<span class="sidebar-joined-on"></span>
+			<hr>
+			<span class="social followers"></span>
+			<span class="social stars"></span>
+			<span class="social following"></span>
+			<hr>
+			<h3>Organizations</h3>
+			<div class="organizations">
+			</div>
+	</script>
+
+	<script type="text/template" data-template-name="big-repo-listitem">
+		<li>
+			<h2><a href="<%= html_url %>"><%= name %></a><h2>
+			<h4><%= updated_at %></h4>
+			<span>Stars: <%= stargazers_count %></span>
+			<span>Forks: <%= forks_count %></span>
+		</li>
+	</script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+	<script type="text/javascript" src="js/token.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
