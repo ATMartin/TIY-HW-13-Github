@@ -3,18 +3,47 @@
 
 html, body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  color: #333; }
+
+a {
+  color: #4183C4;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+h1 {
+  margin: 10px auto; }
+
+h2 {
+  margin: 10px auto; }
+
+h4 {
+  font-size: 14px;
+  color: #888;
+  font-weight: normal; }
 
 body {
-  background-color: #ddd;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  font-family: 'Helvetica', sans-serif; }
 
 header {
   width: 100%;
-  background-color: #ddd;
-  border-bottom: #bbb;
-  text-align: center; }
+  height: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #bbb;
+  background-color: #eee;
+  text-align: center;
+  padding-top: 8px;
+  margin-bottom: 30px; }
+  header a {
+    color: black;
+    margin: 0 8px; }
+  header a:hover {
+    color: #4183C4;
+    text-decoration: none; }
 
 .header-container {
   width: 60%;
@@ -23,13 +52,37 @@ header {
 
 .header-left {
   display: inline-block;
-  width: 58%;
-  text-align: left; }
+  width: 65%;
+  text-align: left;
+  position: relative; }
+  .header-left .header-search {
+    height: 30px;
+    width: 350px;
+    border-radius: 5px; }
+  .header-left .octicon-mark-github {
+    padding-right: 5px;
+    vertical-align: middle;
+    font-size: 30px; }
 
 .header-right {
   display: inline-block;
-  width: 38%;
+  width: 34%;
   text-align: right; }
+  .header-right img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    border-radius: 2px; }
+  .header-right .octicon-plus {
+    position: relative; }
+  .header-right .octicon-plus:after {
+    content: '\f05b';
+    font-family: 'octicons';
+    font-size: 8px;
+    position: absolute;
+    right: -8px;
+    top: 5px; }
 
 .container {
   background-color: white;
@@ -38,14 +91,90 @@ header {
   min-width: 1000px;
   margin: 0 auto; }
 
+.content-tabs {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px; }
+  .content-tabs a {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid transparent;
+    padding: 10px;
+    margin-bottom: -1px; }
+    .content-tabs a.selected {
+      border-bottom: 1px solid white; }
+
+.repo-search-sort {
+  padding: 5px 0 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px; }
+  .repo-search-sort a {
+    margin-right: 8px; }
+  .repo-search-sort a.selected {
+    color: black;
+    font-weight: bold; }
+  .repo-search-sort .search-repo-input {
+    height: 30px;
+    vertical-align: middle;
+    width: 250px; }
+  .repo-search-sort .search-repo {
+    height: 30px;
+    margin-right: 30px;
+    width: 50px; }
+  .repo-search-sort .new-repo {
+    height: 30px;
+    width: 50px;
+    background-color: green; }
+
 .sidebar {
   vertical-align: top;
   display: inline-block;
   width: 24%; }
+  .sidebar .large-profile-pic img {
+    display: block;
+    height: 230px;
+    width: 230px;
+    border-radius: 5%; }
+  .sidebar .social {
+    display: inline-block;
+    width: 30%;
+    position: relative;
+    text-align: center; }
+    .sidebar .social:before {
+      position: absolute;
+      color: #ddd;
+      font-size: 12px;
+      bottom: px;
+      left: 15px; }
+    .sidebar .social.followers:before {
+      content: "Followers"; }
+    .sidebar .social.stars:before {
+      content: "Starred"; }
+    .sidebar .social.following:before {
+      content: "Following"; }
 
 .content {
   display: inline-block;
   width: 74%; }
+
+.repo-big-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+  .repo-big-list li {
+    border-bottom: 1px solid #eee;
+    margin: 0 auto;
+    text-align: center; }
+    .repo-big-list li .big-repo-item-left {
+      display: inline-block;
+      width: 60%;
+      text-align: left; }
+    .repo-big-list li .big-repo-item-right {
+      vertical-align: top;
+      padding-top: 30px;
+      display: inline-block;
+      width: 38%;
+      text-align: right;
+      font-size: 14px; }
 
 footer {
   border-top: 1px solid gray; }

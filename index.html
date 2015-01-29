@@ -10,35 +10,42 @@
 	<header>
 		<div class='header-container'>
 			<div class='header-left'>
-				<input type="text" class="header-search">
+				<a href="http://github.com">
+					<span class="octicon octicon-mark-github"></span>
+				</a>
+				<input type="text" class="header-search" placeholder="Search GitHub">
 				<a href="#">Explore</a>
 				<a href="#">Gist</a>
 				<a href="#">Blog</a>
 				<a href="#">Help</a>
 			</div>
 			<div class='header-right'>
-				<a href="#">Profile</a>
-				<a href="#">+</a>
-				<a href="#">Notes</a>
-				<a href="#">Gear</a>
-				<a href="#">Door</a>
+				<a href="#" class="logged-in-user">
+					<img src="https://avatars.githubusercontent.com/u/4934682?v=3">
+					ATMartin
+				</a>
+				<a href="#"><span class="octicon octicon-plus"></span></a>
+				<a href="#"><span class="octicon octicon-inbox"></span></a>
+				<a href="#"><span class="octicon octicon-gear"></span></a>
+				<a href="#"<span class="octicon octicon-sign-out"></span></a>
 			</div>
 		</div>
 	</header>
   <div class="container">
     <div class="sidebar">
-         </div>
+    <!-- AUTO-POPULATE -->
+		</div>
     <div class="content">
       <div class="content-tabs">
 			  <a href="#">Contributions</a>
-				<a href="#">Repositories</a>
+				<a href="#" class="selected">Repositories</a>
 				<a href="#">Public activity</a>
 				<button class="edit-profile">Edit Profile</button>
 			</div>
 			<div class="repo-search-sort">
-				<input type="text" class="search-repo-input">
+				<input type="text" class="search-repo-input" placeholder="Find a repository...">
 				<button class="search-repo">Search</button>
-				<a href="#" selected>All</a>
+				<a href="#" class="selected">All</a>
 				<a href="#">Public</a>
         <a href="#">Private</a>
 				<a href="#">Sources</a>
@@ -62,17 +69,32 @@
 	<!-- TEMPLATES -->
 	<script type="text/template" data-template-name="sidebar-content">
 		 <div class="large-profile-pic">
-        <img src="http://placekitten.com/g/230/230">
+        <img src="<%= avatar_url %>">
       </div>
-			<span class="sidebar-fullname"></span>
-			<span class="sidebar-username"></span>
+			<span class="sidebar-fullname">
+				<h1><%= name %></h1>
+			</span>
+			<span class="sidebar-username">
+				<h2><%= login %></h2>
+			</span>
 			<hr>
-			<span class="sidebar-location"></span>
-			<span class="sidebar-joined-on"></span>
+			<span class="sidebar-location">
+			  <span class="octicon octicon-location"></span><%= location %>
+			</span>
+			<br>
+			<span class="sidebar-joined-on">
+				<span class="octicon octicon-clock"></span>Joined on <%=  moment(created_at).format('MMM D, YYYY') %>
+			</span>
 			<hr>
-			<span class="social followers"></span>
-			<span class="social stars"></span>
-			<span class="social following"></span>
+			<span class="social followers">
+				<h1><%= followers %></h1>
+			</span>
+			<span class="social stars">
+				<h1>0</h1>
+			</span>
+			<span class="social following">
+				<h1><%= following %></h1>
+			</span>
 			<hr>
 			<h3>Organizations</h3>
 			<div class="organizations">
@@ -81,15 +103,22 @@
 
 	<script type="text/template" data-template-name="big-repo-listitem">
 		<li>
-			<h2><a href="<%= html_url %>"><%= name %></a><h2>
-			<h4><%= updated_at %></h4>
-			<span>Stars: <%= stargazers_count %></span>
-			<span>Forks: <%= forks_count %></span>
+			<div class="big-repo-item-left">
+				<h2><a href="<%= html_url %>"><%= name %></a></h2>
+				<span><%= description %></span>
+				<h4>Updated <%= moment(updated_at).fromNow() %></h4>
+			</div>
+			<div class="big-repo-item-right">
+				<span><%= (language)?language:''  %></span>
+				<span><span class="octicon octicon-star"></span><%= stargazers_count %></span>
+				<span><span class="octicon octicon-git-branch"></span><%= forks_count %></span>
+			</div>
 		</li>
 	</script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 	<script type="text/javascript" src="js/token.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
