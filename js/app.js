@@ -1,7 +1,7 @@
 // Globals
 var rootUrl = "https://api.github.com/users/ATMartin";
 
-var myTemplate = function(endpoint, templateName, dest, cache) {
+var myTemplate = function(endpoint, templateName, dest) {
   this._url = rootUrl + (endpoint != ''?'/':'') + endpoint + "?access_token=" + window.token;
 	this._template = _.template($('[data-template-name='+ templateName + ']').text());
 	this._destination = $(dest);
@@ -9,6 +9,7 @@ var myTemplate = function(endpoint, templateName, dest, cache) {
 	// Return in a callback to prevent race condition where cache doesn't exist on return.
 	this.cache(function() { return this; });
 };
+
 //  |-- Proto
 myTemplate.prototype = { 
   _url: '',
@@ -27,11 +28,10 @@ myTemplate.prototype = {
 			callback(data);
 		});
 	},
-	cache: function(callback) {
+	cache: function() {
 		var me = this;
 	  this.data(function(d) {
 		  me._cachedData = d;
-			callback();
 	  });
 	},
 	getCached: function() { 
@@ -60,10 +60,25 @@ myTemplate.prototype = {
 var bigRepoListing = new myTemplate('repos', 'big-repo-listitem', '.repo-big-list');
 //  |-- Sidebar & Account Data 
 var mySidebarData = new myTemplate('', 'sidebar-content', '.sidebar');
-//  |-- Starred Details
-var myStarredRepos = new myTemplate('starred', 'starred-repos', '');
-// HELPER VARIABLES
-//	|-- Stars Count (for Sidebar Profile) 
-
+//  |-- Profile Tag in Header
+var myHeaderProfile = new myTemplate('', 'header-profile', '.header-profile');
+//  |-- Starred Repos
+var myStarredRepos = new myTemplate('starred', 'starred-repos', '.social.stars');
 bigRepoListing.render();
 mySidebarData.render();
+myHeaderProfile.render();
+
+// BEGIN UBER TECHNICAL DEBT
+var starsCount;
+$.ajax(myStarredRepos._url).done(function(d) {
+	console.log(d.length);
+	//Timeout to allow DOM population from previous renders.
+	//Welcome to callback hell, population you.
+	setTimeout(function() {
+		$('.stars').append(myStarredRepos._template({count: d.length}));
+	}, 1000);
+});
+
+
+
+

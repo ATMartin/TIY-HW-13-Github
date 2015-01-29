@@ -20,10 +20,7 @@
 				<a href="#">Help</a>
 			</div>
 			<div class='header-right'>
-				<a href="#" class="logged-in-user">
-					<img src="https://avatars.githubusercontent.com/u/4934682?v=3">
-					ATMartin
-				</a>
+				<span class="header-profile"></span>
 				<a href="#"><span class="octicon octicon-plus"></span></a>
 				<a href="#"><span class="octicon octicon-inbox"></span></a>
 				<a href="#"><span class="octicon octicon-gear"></span></a>
@@ -90,7 +87,7 @@
 				<h1><%= followers %></h1>
 			</span>
 			<span class="social stars">
-				<h1>0</h1>
+				<!-- AUTO-POPULATE -->
 			</span>
 			<span class="social following">
 				<h1><%= following %></h1>
@@ -114,6 +111,16 @@
 				<span><span class="octicon octicon-git-branch"></span><%= forks_count %></span>
 			</div>
 		</li>
+	</script>
+
+	<script type="text/template" data-template-name="header-profile">
+		<a href="<%= html_url %>">
+			<img src="<%= avatar_url %>"><%= login %>
+		</a>
+	</script>
+
+	<script type="text/template" data-template-name="starred-repos">
+		<h1><%= count %></h1>
 	</script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
